@@ -1,3 +1,4 @@
+
 # 13MIBD Template
 
 Plantilla de repositorio para la asignatura 13MBID.  
@@ -7,6 +8,7 @@ Plantilla de repositorio para la asignatura 13MBID.
 Universidad Internacional de Valencia*  
 
 Prof: Dr. Horacio Kuna  
+Alumna: Zineb Helali Amoura
 Dictado: OCT25-26
 
 ## Descripción del contenido
