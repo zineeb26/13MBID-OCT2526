@@ -13,8 +13,8 @@ stages:
       size: 845190
     - path: src/data_visualization.py
       hash: md5
-      md5: 7389acd6593689207aa3f007a0bcb4f2
-      size: 3212
+      md5: 0af90412e64d1f2087d94eefc06a956f
+      size: 3602
     outs:
     - path: docs/figures/correlation_heatmap_creditos.png
       hash: md5
@@ -36,3 +36,7 @@ stages:
       hash: md5
       md5: 103ed490582e63d18653cece13747409
       size: 21596
+    - path: docs/reporte_verificacion_extra.html
+      hash: md5
+      md5: 9a298c6eece824aaacda8782bb1e1fb8
+      size: 3824697

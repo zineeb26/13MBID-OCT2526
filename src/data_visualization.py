@@ -3,10 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+from ydata_profiling import ProfileReport
 
 def visualize_data(datos_creditos: str = "data/raw/datos_creditos.csv",
                     datos_tarjetas: str = "data/raw/datos_tarjetas.csv",
-                    output_dir: str = "docs/figures/") -> None:
+                    output_dir: str = "docs/figures/",
+                    report_dir: str = "docs/") -> None:
     """
     Generar visualizaciones de los datos del escenario
     mediante gráficos de Seaborn y Matplotlib.
@@ -22,6 +24,9 @@ def visualize_data(datos_creditos: str = "data/raw/datos_creditos.csv",
     # Crear el directorio de salida si no existe
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    report_dir = Path(report_dir)
+    report_dir.mkdir(parents=True, exist_ok=True)
     
     # Lectura de los datos
     df_creditos = pd.read_csv(datos_creditos, sep=";")
@@ -78,6 +83,10 @@ def visualize_data(datos_creditos: str = "data/raw/datos_creditos.csv",
     plt.xticks(rotation=45)
     plt.savefig(output_dir / 'mora_vivienda_proporcion.png')
     plt.close()
+
+    # Reporte automático de verificación con ydata-profiling
+    profile = ProfileReport(df_creditos, title="Reporte de verificación")
+    profile.to_file(report_dir / "reporte_verificacion_extra.html")
 
 if __name__ == "__main__":
     visualize_data()
