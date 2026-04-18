@@ -56,5 +56,28 @@ def visualize_data(datos_creditos: str = "data/raw/datos_creditos.csv",
     plt.savefig(output_dir / 'correlation_heatmap_tarjetas.png')
     plt.close()
 
+
+    # Gráfico de distribución de la variable ingresos según la mora
+    plt.figure(figsize=(10, 6))
+    sns.histplot(data=df_creditos, x="ingresos", hue="falta_pago", bins=30, kde=True)
+    plt.title("Distribución de ingresos según mora")
+    plt.xlabel("Ingresos")
+    plt.ylabel("Frecuencia")
+    plt.savefig(output_dir / 'hist_ingresos_mora.png')
+    plt.close()
+
+    plt.figure(figsize=(15, 10))
+    prop = df_creditos.groupby('situacion_vivienda')['falta_pago'].value_counts(normalize=True).unstack()
+
+    # Gráfico de proporción de la variable mora según la situación de vivienda
+    prop.plot(kind='bar', stacked=True)
+    plt.title('Proporción de mora según situación de vivienda')
+    plt.xlabel('Situación de vivienda')
+    plt.ylabel('Proporción')
+    plt.legend(title='Mora')
+    plt.xticks(rotation=45)
+    plt.savefig(output_dir / 'mora_vivienda_proporcion.png')
+    plt.close()
+
 if __name__ == "__main__":
     visualize_data()
