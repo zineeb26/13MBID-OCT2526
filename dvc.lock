@@ -24,6 +24,14 @@ stages:
       hash: md5
       md5: be5105f4aed5c8594f1939d74d91be5f
       size: 52497
+    - path: docs/figures/hist_ingresos_mora.png
+      hash: md5
+      md5: 44bdb6c8e8f8e604d95c010f4b0be04f
+      size: 34020
+    - path: docs/figures/mora_vivienda_proporcion.png
+      hash: md5
+      md5: 674f2cdb26cb4c437602d9589df670c4
+      size: 20043
     - path: docs/figures/target_distribution.png
       hash: md5
       md5: 103ed490582e63d18653cece13747409
