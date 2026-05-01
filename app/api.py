@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from pathlib import Path
 import pandas as pd
 import joblib
+import traceback
 from typing import Dict
 
 app = FastAPI(
@@ -105,6 +106,8 @@ def predict(request: PredictionRequest):
     if model is None:
         raise HTTPException(status_code=500, detail="El modelo no está disponible. Intenta nuevamente más tarde.")
     
+    print(f"Ruta del modelo: {MODEL_PATH}")
+    print(f"Existe el modelo?: {MODEL_PATH.exists()}")
     try:
         # Convertir la solicitud a un DataFrame
         input_data = pd.DataFrame([request.dict()])
@@ -133,4 +136,6 @@ def predict(request: PredictionRequest):
             model_info=model_info
         )
     except Exception as e:
-        raise HTTPException(status_code=503, detail=f"Error al realizar la predicción: {e}")
+        print(f"Error al cargar el modelo desde {MODEL_PATH}: {repr(e)}")
+        traceback.print_exc()
+        model = None
