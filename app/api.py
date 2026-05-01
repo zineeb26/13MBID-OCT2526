@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+from pathlib import Path
 import pandas as pd
 import joblib
 from typing import Dict
@@ -67,7 +68,8 @@ class PredictionResponse(BaseModel):
     model_info: Dict[str, str]
 
 # Cargar el modelo entrenado
-MODEL_PATH = "models/prod_model.pkl"
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "prod_model.pkl"
 
 try:
     model = joblib.load(MODEL_PATH)
